@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * SQLite 数据库帮助类：
  * v4 新增多收货地址表，并为订单增加收货地址快照字段。
- * v3 → v4 采用增量迁移，保留购物车、订单、收藏、评价与优惠券数据。
+ * v5 扩充优惠券档位；v3 → v4、v4 → v5 均采用增量迁移，保留旧数据。
  */
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "fruit_shop.db";
-    private static final int VERSION = 4;
+    private static final int VERSION = 5;
 
     public static final String TABLE_CART = "cart";
     public static final String TABLE_ORDER = "orders";
@@ -116,13 +116,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(addressTableSql());
 
-        // 预置三张演示优惠券，下单时按门槛自动参与选择
-        db.execSQL("INSERT INTO " + TABLE_COUPON + "(" + COL_NAME + "," + COL_THRESHOLD + ","
-                + COL_AMOUNT + "," + COL_USED + ") VALUES('新人尝鲜券',30,3,0)");
-        db.execSQL("INSERT INTO " + TABLE_COUPON + "(" + COL_NAME + "," + COL_THRESHOLD + ","
-                + COL_AMOUNT + "," + COL_USED + ") VALUES('满49减5券',49,5,0)");
-        db.execSQL("INSERT INTO " + TABLE_COUPON + "(" + COL_NAME + "," + COL_THRESHOLD + ","
-                + COL_AMOUNT + "," + COL_USED + ") VALUES('满80减10券',80,10,0)");
+        // 预置多档优惠券，下单时按门槛筛选可用券
+        seedCoupons(db);
     }
 
     @Override
@@ -143,6 +138,32 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(addressTableSql());
             addColumnIfMissing(db, TABLE_ORDER, COL_ADDRESS, "TEXT");
         }
+        // v4 → v5：补齐新增优惠券档位，不重复、不重置已使用状态
+        if (oldVersion < 5) {
+            seedCoupons(db);
+        }
+    }
+
+    /**
+     * 按名称补券：已存在的券保持原 used 状态，不会被重置或重复插入。
+     */
+    private void seedCoupons(SQLiteDatabase db) {
+        addCouponIfMissing(db, "新人尝鲜券", 30, 3);
+        addCouponIfMissing(db, "满39减4券", 39, 4);
+        addCouponIfMissing(db, "满49减5券", 49, 5);
+        addCouponIfMissing(db, "满59减6券", 59, 6);
+        addCouponIfMissing(db, "满69减8券", 69, 8);
+        addCouponIfMissing(db, "满80减10券", 80, 10);
+        addCouponIfMissing(db, "满99减15券", 99, 15);
+        addCouponIfMissing(db, "满129减20券", 129, 20);
+        addCouponIfMissing(db, "满159减25券", 159, 25);
+    }
+
+    private void addCouponIfMissing(SQLiteDatabase db, String name, double threshold, double amount) {
+        db.execSQL("INSERT INTO " + TABLE_COUPON + "(" + COL_NAME + "," + COL_THRESHOLD + ","
+                        + COL_AMOUNT + "," + COL_USED + ") SELECT ?,?,?,0 WHERE NOT EXISTS "
+                        + "(SELECT 1 FROM " + TABLE_COUPON + " WHERE " + COL_NAME + "=?)",
+                new Object[]{name, threshold, amount, name});
     }
 
     private String addressTableSql() {
