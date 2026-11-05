@@ -1,0 +1,69 @@
+{
+  "shopList": [
+    {
+      "shopId": 1,
+      "shopName": "鲜果季·中央公园店",
+      "shopDesc": "每日产地直采，2小时鲜活送达",
+      "shopImg": "shop_1",
+      "tags": "坏果包赔,产地直发",
+      "rating": 4.9,
+      "deliveryTime": "30分钟",
+      "distance": "0.8km",
+      "minOrder": 20,
+      "fruitList": [
+        {"fruitId": 101, "name": "阳光玫瑰葡萄", "price": 19.9, "desc": "果粒饱满，清甜无籽，带淡淡玫瑰香", "img": "fruit_grape", "stock": 50, "unit": "斤", "sales": 326},
+        {"fruitId": 102, "name": "丹东红颜草莓", "price": 29.9, "desc": "奶油香气浓郁，现摘现发", "img": "fruit_strawberry", "stock": 30, "unit": "盒", "sales": 218},
+        {"fruitId": 103, "name": "海南台农芒果", "price": 12.8, "desc": "果肉细腻，香甜多汁", "img": "fruit_mango", "stock": 80, "unit": "斤", "sales": 412}
+      ]
+    },
+    {
+      "shopId": 2,
+      "shopName": "南城鲜果仓",
+      "shopDesc": "社区水果仓储店，平价又新鲜",
+      "shopImg": "shop_2",
+      "tags": "满49免配送费,次日达",
+      "rating": 4.7,
+      "deliveryTime": "45分钟",
+      "distance": "1.6km",
+      "minOrder": 15,
+      "fruitList": [
+        {"fruitId": 201, "name": "麒麟西瓜", "price": 3.5, "desc": "8424品种，脆甜沙瓤", "img": "fruit_watermelon", "stock": 100, "unit": "斤", "sales": 890},
+        {"fruitId": 202, "name": "智利车厘子", "price": 45.0, "desc": "J级大果，脆甜爆汁", "img": "fruit_cherry", "stock": 20, "unit": "盒", "sales": 156},
+        {"fruitId": 203, "name": "徐香猕猴桃", "price": 8.8, "desc": "酸甜适口，维C满满", "img": "fruit_kiwi", "stock": 60, "unit": "斤", "sales": 267}
+      ]
+    },
+    {
+      "shopId": 3,
+      "shopName": "果然多精品果切",
+      "shopDesc": "精品水果与现切果盒，看得见的新鲜",
+      "shopImg": "shop_3",
+      "tags": "现切现送,品质优选",
+      "rating": 4.8,
+      "deliveryTime": "35分钟",
+      "distance": "2.1km",
+      "minOrder": 25,
+      "fruitList": [
+        {"fruitId": 301, "name": "赣南脐橙", "price": 6.9, "desc": "皮薄多汁，酸甜平衡", "img": "fruit_orange", "stock": 120, "unit": "斤", "sales": 501},
+        {"fruitId": 302, "name": "阳山水蜜桃", "price": 15.9, "desc": "软糯多汁，一口爆汁", "img": "fruit_peach", "stock": 40, "unit": "个", "sales": 198},
+        {"fruitId": 303, "name": "蓝莓果盒", "price": 22.0, "desc": "颗颗饱满，花青素丰富", "img": "fruit_blueberry", "stock": 25, "unit": "盒", "sales": 143},
+        {"fruitId": 304, "name": "海南香水柠檬", "price": 5.5, "desc": "香气清新，冷饮好搭档", "img": "fruit_lemon", "stock": 70, "unit": "个", "sales": 320}
+      ]
+    },
+    {
+      "shopId": 4,
+      "shopName": "每日鲜果·校园店",
+      "shopDesc": "校园门口的新鲜补给站，学生党优选",
+      "shopImg": "shop_4",
+      "tags": "校园专送,9.9元起送",
+      "rating": 4.6,
+      "deliveryTime": "20分钟",
+      "distance": "0.3km",
+      "minOrder": 9.9,
+      "fruitList": [
+        {"fruitId": 401, "name": "海南香蕉", "price": 4.9, "desc": "自然熟成，软糯香甜", "img": "fruit_banana", "stock": 150, "unit": "斤", "sales": 1200},
+        {"fruitId": 402, "name": "红富士苹果", "price": 7.9, "desc": "脆甜多汁，果香浓郁", "img": "fruit_apple", "stock": 90, "unit": "斤", "sales": 760},
+        {"fruitId": 403, "name": "阳光玫瑰葡萄", "price": 18.9, "desc": "校园特惠，清甜无籽", "img": "fruit_grape", "stock": 35, "unit": "斤", "sales": 288}
+      ]
+    }
+  ]
+}

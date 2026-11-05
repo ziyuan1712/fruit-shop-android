@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GuoYueFresh" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/brand_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/brand_green_light</item>
+        <item name="colorOnPrimaryContainer">@color/brand_green_dark</item>
+        <item name="colorSecondary">@color/brand_orange</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/brand_orange_light</item>
+        <item name="colorOnSecondaryContainer">@color/brand_orange_dark</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorSurfaceVariant">@color/bg_soft</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="colorOutline">@color/divider</item>
+        <item name="android:colorBackground">@color/bg_page</item>
+        <item name="android:windowBackground">@color/bg_page</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/bg_page</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.GuoYue.AlertDialog</item>
+    </style>
+
+    <style name="ThemeOverlay.GuoYue.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/brand_green</item>
+    </style>
+
+    <!-- 启动页使用全屏绿底 -->
+    <style name="Theme.GuoYueFresh.Splash" parent="Theme.GuoYueFresh">
+        <item name="android:windowBackground">@color/brand_green</item>
+        <item name="android:statusBarColor">@color/brand_green_dark</item>
+        <item name="android:navigationBarColor">@color/brand_green_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

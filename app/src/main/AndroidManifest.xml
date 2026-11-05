@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GuoYueFresh">
+
+        <!-- 启动页：Logo 展示 + 倒计时跳转 -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GuoYueFresh.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 登录 / 注册 -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 首页：店铺列表 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- 店铺详情：店铺信息 + 水果列表 -->
+        <activity
+            android:name=".ShopDetailActivity"
+            android:exported="false" />
+
+        <!-- 水果详情：图片、名称、价格、描述 + 加入购物车 -->
+        <activity
+            android:name=".FruitDetailActivity"
+            android:exported="false" />
+
+        <!-- 购物车 -->
+        <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+
+        <!-- 订单确认与提交 -->
+        <activity
+            android:name=".OrderActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 我的订单 -->
+        <activity
+            android:name=".OrderListActivity"
+            android:exported="false" />
+
+        <!-- 我的收藏 -->
+        <activity
+            android:name=".FavoritesActivity"
+            android:exported="false" />
+
+        <!-- 我的优惠券 -->
+        <activity
+            android:name=".CouponsActivity"
+            android:exported="false" />
+
+        <!-- 收货地址管理 / 选择 -->
+        <activity
+            android:name=".AddressActivity"
+            android:exported="false" />
+
+        <!-- 个人中心 -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+
+    </application>
+</manifest>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 品牌色：果园绿 + 鲜果橙 -->
+    <color name="brand_green">#2F7D4F</color>
+    <color name="brand_green_dark">#1E5B39</color>
+    <color name="brand_green_light">#E7F4EA</color>
+    <color name="brand_green_pale">#F2F8F3</color>
+    <color name="brand_orange">#FF8A3D</color>
+    <color name="brand_orange_dark">#EF6C1A</color>
+    <color name="brand_orange_light">#FFF1E5</color>
+
+    <!-- 背景与文字 -->
+    <color name="bg_page">#F7F8F3</color>
+    <color name="bg_soft">#F1F4EF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_primary">#17251C</color>
+    <color name="text_secondary">#647468</color>
+    <color name="text_hint">#9AA89E</color>
+    <color name="divider">#E6ECE6</color>
+    <color name="red">#E5484D</color>
+    <color name="badge">#FF5A45</color>
+    <color name="star">#FFB020</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+</resources>
