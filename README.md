@@ -13,7 +13,7 @@
 | 版本 | 2.1（versionCode 3） |
 | 开发语言 | Java 11 |
 | 演示账号 | `admin` / `123456`（首次启动自动写入本地） |
-| 启动入口 | `SplashActivity` → 已登录进入 `MainActivity`，否则进入 `LoginActivity` |
+| 启动入口 | `SplashActivity`：未登录直接进入 `LoginActivity`；登录成功后显示 3 秒欢迎倒计时；已记住登录则启动时直接倒计时进首页 |
 
 在 Android Studio 中打开项目，等待 Gradle 同步完成后运行 `app` 即可。
 命令行构建：
@@ -63,7 +63,7 @@ APK 输出：`app/build/outputs/apk/debug/app-debug.apk`
 
 ### 选做模块（已完成）
 
-- **启动页**：品牌 Logo、Slogan、3 秒倒计时与“跳过”按钮，根据登录状态自动分流。
+- **启动页**：未登录时直接显示登录页，登录成功后展示品牌 Logo、Slogan 与 3 秒欢迎倒计时（可跳过），再进入首页；已记住登录的用户启动时直接倒计时。
 - **登录 / 注册**：用户名、密码、确认密码校验；账号保存在 SharedPreferences；注册成功后回到登录态，需手动输入密码登录；“记住登录状态”控制下次启动是否自动登录。
 - **个人中心**：用户信息、订单数 / 购物车数 / 地址状态、我的订单、我的收藏、购物车、我的优惠券、收货地址、关于、退出登录。
 - **搜索**：首页按店铺名、描述、标签、水果名、水果描述实时过滤。
@@ -93,8 +93,8 @@ APK 输出：`app/build/outputs/apk/debug/app-debug.apk`
 
 ```
 SplashActivity
-   ├─ 已登录且勾选记住登录 → MainActivity
-   └─ 未登录 → LoginActivity（登录 / 注册）→ MainActivity
+   ├─ 未登录 → LoginActivity（登录 / 注册）→ 3 秒欢迎倒计时 → MainActivity
+   └─ 已登录且勾选记住登录 → 3 秒欢迎倒计时 → MainActivity
 MainActivity
    ├─ 店铺卡片 → ShopDetailActivity
    │                ├─ 水果卡片 → FruitDetailActivity → 加入购物车 / 收藏

@@ -12,19 +12,33 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import com.example.myapplication.util.SPUtil;
 
 /**
- * 启动页：Logo 与品牌语展示，3 秒倒计时后按登录状态跳转。
+ * 启动页：
+ * - 未登录时直接进入登录页，不先播倒计时；
+ * - 登录成功后展示 3 秒欢迎倒计时，再进入首页；
+ * - 已记住登录的用户启动时直接倒计时进入首页。
  */
 public class SplashActivity extends BaseActivity {
 
+    public static final String EXTRA_FROM_LOGIN = "from_login";
     private static final int COUNTDOWN_SECONDS = 3;
 
     private boolean navigated;
+    private boolean fromLogin;
     private CountDownTimer countDownTimer;
     private TextView tvCountdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 未登录用户优先看到登录页，不让他们先等 3 秒倒计时。
+        fromLogin = getIntent().getBooleanExtra(EXTRA_FROM_LOGIN, false);
+        if (!fromLogin && !SPUtil.isLoggedIn()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         getWindow().setBackgroundDrawableResource(R.color.brand_green);
         WindowInsetsControllerCompat controller =
                 WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
@@ -70,7 +84,8 @@ public class SplashActivity extends BaseActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        Class<?> target = SPUtil.isLoggedIn() ? MainActivity.class : LoginActivity.class;
+        Class<?> target = (fromLogin || SPUtil.isLoggedIn())
+                ? MainActivity.class : LoginActivity.class;
         startActivity(new Intent(this, target));
         finish();
     }

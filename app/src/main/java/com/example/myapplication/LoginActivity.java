@@ -161,7 +161,7 @@ public class LoginActivity extends BaseActivity {
             }
             SPUtil.saveSession(username, cbRemember.isChecked());
             Toast.makeText(this, "欢迎回来，" + username, Toast.LENGTH_SHORT).show();
-            enterMain();
+            enterWelcome();
         }
     }
 
@@ -175,9 +175,11 @@ public class LoginActivity extends BaseActivity {
         return editText.getText() == null ? "" : editText.getText().toString().trim();
     }
 
-    private void enterMain() {
+    private void enterWelcome() {
         hideKeyboard();
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.putExtra(SplashActivity.EXTRA_FROM_LOGIN, true);
+        startActivity(intent);
         finish();
     }
 
