@@ -2,8 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.CountDownTimer;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -13,31 +12,15 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import com.example.myapplication.util.SPUtil;
 
 /**
- * 启动页：Logo 与品牌语展示，2 秒倒计时后按登录状态跳转。
+ * 启动页：Logo 与品牌语展示，3 秒倒计时后按登录状态跳转。
  */
 public class SplashActivity extends BaseActivity {
 
-    private static final int COUNTDOWN_SECONDS = 2;
+    private static final int COUNTDOWN_SECONDS = 3;
 
-    private final Handler handler = new Handler(Looper.getMainLooper());
     private boolean navigated;
-    private int remainSeconds = COUNTDOWN_SECONDS;
+    private CountDownTimer countDownTimer;
     private TextView tvCountdown;
-
-    private final Runnable tickRunnable = new Runnable() {
-        @Override
-        public void run() {
-            remainSeconds--;
-            if (remainSeconds <= 0) {
-                goNext();
-                return;
-            }
-            if (tvCountdown != null) {
-                tvCountdown.setText(remainSeconds + " 秒后自动进入");
-            }
-            handler.postDelayed(this, 1000L);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +38,28 @@ public class SplashActivity extends BaseActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                // 启动页等待倒计时结束或点击“跳过”
+                finish();
             }
         });
-        handler.postDelayed(tickRunnable, 1000L);
+        startCountdown();
+    }
+
+    private void startCountdown() {
+        countDownTimer = new CountDownTimer(COUNTDOWN_SECONDS * 1000L, 1000L) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int seconds = (int) Math.ceil(millisUntilFinished / 1000.0);
+                if (tvCountdown != null) {
+                    tvCountdown.setText(seconds + " 秒后自动进入");
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                goNext();
+            }
+        };
+        countDownTimer.start();
     }
 
     private void goNext() {
@@ -66,7 +67,9 @@ public class SplashActivity extends BaseActivity {
             return;
         }
         navigated = true;
-        handler.removeCallbacks(tickRunnable);
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
         Class<?> target = SPUtil.isLoggedIn() ? MainActivity.class : LoginActivity.class;
         startActivity(new Intent(this, target));
         finish();
@@ -74,7 +77,9 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        handler.removeCallbacks(tickRunnable);
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
         super.onDestroy();
     }
 }

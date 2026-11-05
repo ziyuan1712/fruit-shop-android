@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="2 秒后自动进入"
+            android:text="3 秒后自动进入"
             android:textColor="@color/white_70"
             android:textSize="12sp" />
     </LinearLayout>
