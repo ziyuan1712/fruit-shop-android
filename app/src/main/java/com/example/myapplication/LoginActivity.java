@@ -147,9 +147,13 @@ public class LoginActivity extends BaseActivity {
                 Toast.makeText(this, "注册失败，请稍后重试", Toast.LENGTH_SHORT).show();
                 return;
             }
-            SPUtil.saveSession(username, true);
-            Toast.makeText(this, "注册成功，欢迎加入果悦", Toast.LENGTH_SHORT).show();
-            enterMain();
+            // 注册只创建账号，不建立登录会话；回到登录态由用户手动输入密码登录。
+            switchMode(false);
+            etUsername.setText(username);
+            etPwd.setText("");
+            etConfirm.setText("");
+            etPwd.requestFocus();
+            Toast.makeText(this, "注册成功，请使用新账号登录", Toast.LENGTH_SHORT).show();
         } else {
             if (!SPUtil.checkPassword(username, password)) {
                 tilPwd.setError("用户名或密码错误");
