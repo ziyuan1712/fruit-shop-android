@@ -12,6 +12,7 @@
         <!-- 启动页：Logo 展示 + 倒计时跳转 -->
         <activity
             android:name=".SplashActivity"
+            android:clearTaskOnLaunch="true"
             android:exported="true"
             android:theme="@style/Theme.GuoYueFresh.Splash">
             <intent-filter>
